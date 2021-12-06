@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+//gradle 7버전부터는 compile <==> testImplementation   testCompile <==> testRuntimeOnly
+//dependencies 의존성 주입.
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'org.springframework.boot:spring-boot-starter-mustache'
+    testImplementation 'com.h2database:h2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    testImplementation 'org.springframework.session:spring-session-jdbc'
+
+    testImplementation"org.mariadb.jdbc:mariadb-java-client"
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testRuntimeOnly 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly "org.springframework.security:spring-security-test"
+}
+
+test {
+    useJUnitPlatform()
+}
